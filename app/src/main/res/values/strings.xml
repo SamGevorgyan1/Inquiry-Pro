@@ -1,0 +1,7 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <string name="app_name" translatable="false">Inquiry Pro</string>
+
+    <string name="welcome_to_colored_text" translatable="false">
+    <span android:textColor="#FFFFFF">Welcome to Inquiry Pro </span>
+</string>
+</resources>

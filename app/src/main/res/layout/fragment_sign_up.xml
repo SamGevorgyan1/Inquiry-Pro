@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.auth.fragments.SignUpFragment"
+    android:background="@color/backGroundColor">
+
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/contentStart"
+        android:layout_width="@dimen/_0dp"
+        android:layout_height="@dimen/_0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="@dimen/_24dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/contentEnd"
+        android:layout_width="@dimen/_0dp"
+        android:layout_height="@dimen/_0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="@dimen/_24dp" />
+
+
+
+
+
+    <TextView
+        android:id="@+id/tvTitleSignUp"
+        android:layout_width="@dimen/_0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_32dp"
+        android:text="Sign Up"
+        android:textColor="@color/textColor"
+        android:textSize="@dimen/_18sp"
+        app:layout_constraintVertical_bias="1"
+        app:layout_constraintBottom_toTopOf="@id/tvTitleFullName"
+        app:layout_constraintEnd_toEndOf="@id/contentEnd"
+        app:layout_constraintStart_toStartOf="@+id/contentStart"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/tvTitleFullName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_8dp"
+        android:drawableStart="@drawable/ic_user"
+        android:drawablePadding="@dimen/_8dp"
+        android:text="Full Name"
+        app:layout_constraintBottom_toTopOf="@id/etFullName"
+        app:layout_constraintStart_toStartOf="@id/etEmailOrUserName" />
+
+    <EditText
+        android:id="@+id/etFullName"
+        android:layout_width="0dp"
+        style="@style/EditTextFullName"
+        android:textColor="@color/textColor"
+        android:layout_marginBottom="@dimen/_16dp"
+        app:layout_constraintBottom_toTopOf="@id/tvTitleEmail"
+        app:layout_constraintStart_toStartOf="@id/contentStart"
+        app:layout_constraintEnd_toEndOf="@id/contentEnd"/>
+
+    <TextView
+        android:id="@+id/tvTitleEmail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_8dp"
+        android:drawableStart="@drawable/ic_email"
+        android:drawablePadding="@dimen/_8dp"
+        android:text="Your Email"
+        app:layout_constraintBottom_toTopOf="@id/etEmailOrUserName"
+        app:layout_constraintStart_toStartOf="@id/etEmailOrUserName" />
+
+
+    <EditText
+        android:id="@+id/etEmailOrUserName"
+        style="@style/EditTextEmailAddress"
+        android:layout_width="0dp"
+        android:layout_marginBottom="@dimen/_16dp"
+        app:layout_constraintBottom_toTopOf="@id/tvTitlePassword"
+        app:layout_constraintEnd_toEndOf="@id/contentEnd"
+        app:layout_constraintStart_toStartOf="@id/contentStart" />
+
+
+    <TextView
+        android:id="@+id/tvTitlePassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_8dp"
+        android:drawableStart="@drawable/ic_lock"
+        android:drawablePadding="@dimen/_8dp"
+        android:text="Password"
+        app:layout_constraintBottom_toTopOf="@id/etPassword"
+        app:layout_constraintStart_toStartOf="@id/etPassword" />
+
+
+    <EditText
+        android:id="@+id/etPassword"
+        style="@style/EditTextPasswordStyle"
+        android:layout_width="0dp"
+        android:layout_marginBottom="@dimen/_32dp"
+        app:layout_constraintBottom_toTopOf="@id/btnSignUp"
+        app:layout_constraintEnd_toEndOf="@id/contentEnd"
+        app:layout_constraintStart_toStartOf="@id/contentStart" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSignUp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/_32dp"
+        android:background="@drawable/shape_rounded_light_purple"
+        android:text="Sign Up"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_16sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvOrSignInWith"
+        app:layout_constraintEnd_toEndOf="@id/contentEnd"
+        app:layout_constraintHeight_percent="0.1"
+        app:layout_constraintStart_toStartOf="@id/contentStart" />
+
+    <View
+        android:id="@+id/line1"
+       style="@style/LineStyle"
+        app:layout_constraintBottom_toBottomOf="@id/tvOrSignInWith"
+        app:layout_constraintEnd_toStartOf="@+id/tvOrSignInWith"
+        app:layout_constraintStart_toStartOf="@id/btnGoogle"
+        app:layout_constraintTop_toTopOf="@id/tvOrSignInWith" />
+
+    <View
+        android:id="@+id/line2"
+        style="@style/LineStyle"
+        app:layout_constraintBottom_toBottomOf="@id/tvOrSignInWith"
+        app:layout_constraintEnd_toEndOf="@id/btnT"
+        app:layout_constraintStart_toEndOf="@id/tvOrSignInWith"
+        app:layout_constraintTop_toTopOf="@id/tvOrSignInWith" />
+
+
+    <TextView
+        android:id="@+id/tvOrSignInWith"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_16dp"
+        android:text="Or sign up with"
+
+        android:textSize="@dimen/_16sp"
+        app:layout_constraintBottom_toTopOf="@id/btnFaceBook"
+        app:layout_constraintEnd_toEndOf="@id/contentEnd"
+        app:layout_constraintStart_toStartOf="@id/contentStart" />
+
+
+    <ImageButton
+        android:id="@+id/btnGoogle"
+        style="@style/socialButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_32dp"
+        android:layout_marginBottom="@dimen/_32dp"
+        android:src="@drawable/ic_google"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnFaceBook"
+        app:layout_constraintStart_toStartOf="@id/contentStart" />
+
+    <ImageButton
+        android:id="@+id/btnFaceBook"
+        style="@style/socialButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_32dp"
+        android:layout_marginBottom="@dimen/_32dp"
+        android:src="@drawable/ic_facebook"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnT"
+        app:layout_constraintStart_toEndOf="@id/btnGoogle" />
+
+    <ImageButton
+        android:id="@+id/btnT"
+        style="@style/socialButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_32dp"
+        android:layout_marginEnd="@dimen/_32dp"
+        android:layout_marginBottom="@dimen/_32dp"
+        android:src="@drawable/ic_twitter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/contentEnd"
+        app:layout_constraintStart_toEndOf="@id/btnFaceBook" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

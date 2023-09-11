@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_main"
+    app:startDestination="@id/categoryFragment">
+
+    <fragment
+        android:id="@+id/categoryFragment"
+        android:name="com.inquirypro.ui.main.fragments.CategoryFragment"
+        android:label="CategoryFragment"
+        tools:layout="@layout/fragment_category">
+        <action
+            android:id="@+id/action_categoryFragment_to_partFragment"
+            app:destination="@id/partFragment" />
+
+
+    </fragment>
+    <fragment
+        android:id="@+id/partFragment"
+        android:name="com.inquirypro.ui.main.fragments.PartFragment"
+        android:label="PartFragment"
+        tools:layout="@layout/fragment_part">
+        <action
+            android:id="@+id/action_partFragment_to_questionFragment"
+            app:destination="@id/questionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/questionFragment"
+        android:name="com.inquirypro.ui.main.fragments.QuestionFragment"
+        android:label="QuestionFragment"
+        tools:layout="@layout/fragment_question" >
+        <action
+            android:id="@+id/action_questionFragment_to_questionResultFragment"
+            app:destination="@id/questionResultFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/questionResultFragment"
+        android:name="com.inquirypro.ui.main.fragments.QuestionResultFragment"
+        android:label="QuestionResultFragment"
+        tools:layout="@layout/fragment_question_result"/>
+    <fragment
+        android:id="@+id/userFragment"
+        android:name="com.inquirypro.ui.main.fragments.UserFragment"
+        android:label="UserFragment"
+        tools:layout="@layout/fragment_user"/>
+    <fragment
+        android:id="@+id/questionStoriesFragment"
+        android:name="com.inquirypro.ui.main.fragments.QuestionStoriesFragment"
+        android:label="FragmentQuestionStory"
+        tools:layout="@layout/fragment_question_stories">
+        <action
+            android:id="@+id/action_questionStoriesFragment_to_questionStoryFragment"
+            app:destination="@id/questionStoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/questionStoryFragment"
+        android:name="com.inquirypro.ui.main.fragments.QuestionStoryFragment"
+        android:label="QuestionStoryFragment"
+        tools:layout="@layout/fragment_question_story"/>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.inquirypro.ui.main.fragments.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_partFragment"
+            app:destination="@id/partFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_correctAnswerFragment"
+            app:destination="@id/correctAnswerFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_inCorrectAnswerFragment"
+            app:destination="@id/inCorrectAnswerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/inCorrectAnswerFragment"
+        android:name="com.inquirypro.ui.main.fragments.InCorrectAnswerFragment"
+        android:label="InCorrectAnswerFragment"
+        tools:layout="@layout/fragment_incorrect_answer"/>
+    <fragment
+        android:id="@+id/correctAnswerFragment"
+        android:name="com.inquirypro.ui.main.fragments.CorrectAnswerFragment"
+        android:label="CorrectAnswerFragment"
+        tools:layout="@layout/fragment_correct_answer"/>
+</navigation>

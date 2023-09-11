@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menuHome"
+        android:checkable="true"
+        android:icon="@drawable/ic_home_selector"
+        android:title=""
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/menuCategory"
+        android:checkable="true"
+        android:icon="@color/color_light_purple"
+        android:title=""
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/menuStory"
+        android:checkable="true"
+        android:icon="@color/color_light_purple"
+        android:title=""
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/menuUser"
+        android:checkable="true"
+        android:icon="@drawable/ic_user_selector"
+        android:title=""
+        app:showAsAction="ifRoom" />
+
+</menu>
