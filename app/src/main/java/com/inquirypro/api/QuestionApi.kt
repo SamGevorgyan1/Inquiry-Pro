@@ -8,4 +8,6 @@ import retrofit2.http.Path
 interface QuestionApi {
     @GET("/getQuestion/{categoryId}")
     fun getQuestionsByCategoryId(@Path("categoryId") partId: Int): Call<List<Question>>
+    @GET("/get-subsection-questions/{subsection}")
+    fun getQuestionsBySubsectionId(@Path("subsection") subsectionId: Int):Call<List<Question>>
 }

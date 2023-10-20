@@ -1,22 +1,53 @@
 package com.inquirypro.repository
 
-import com.inquirypro.api.RetrofitService
+import android.util.Log
+import com.inquirypro.api.ApiService
 import com.inquirypro.model.Question
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import retrofit2.awaitResponse
 
 interface QuestionRepository {
 
-    suspend fun getQuestionsByCategoryId(partId: Int): List<Question>?
-
+    suspend fun getQuestionsByCategoryId(categoryId: Int): Result<List<Question>>
+    suspend fun getQuestionsBySubsectionId(partId: Int): Result<List<Question>>
 }
 
-class QuestionRepositoryImpl :QuestionRepository {
+class QuestionRepositoryImpl : QuestionRepository {
 
-    override suspend fun getQuestionsByCategoryId(partId: Int): List<Question>? {
-        val response = RetrofitService.getQuestionApiService().getQuestionsByCategoryId(partId).awaitResponse()
+    override suspend fun getQuestionsByCategoryId(categoryId: Int): Result<List<Question>> {
+        return withContext(Dispatchers.Main) {
+            try {
+                val response =
+                    ApiService.getQuestionApiService().getQuestionsByCategoryId(categoryId)
+                        .awaitResponse()
+                if (response.isSuccessful) {
+                    Result.Success(response.body() ?: emptyList())
+                } else {
+                    Result.Error("Failed to fetch questions by category")
+                }
+            } catch (e: Exception) {
+                Log.e("QuestionRepository", "Error fetching questions by category", e)
+                Result.Error("Network error: ${e.message}")
+            }
+        }
+    }
 
-        if (response.isSuccessful) return response.body()
-
-        return null
+    override suspend fun getQuestionsBySubsectionId(subsectionId: Int): Result<List<Question>> {
+        return withContext(Dispatchers.Main) {
+            try {
+                val response =
+                    ApiService.getQuestionApiService().getQuestionsBySubsectionId(subsectionId)
+                        .awaitResponse()
+                if (response.isSuccessful) {
+                    Result.Success(response.body() ?: emptyList())
+                } else {
+                    Result.Error("Failed to fetch questions by part")
+                }
+            } catch (e: Exception) {
+                Log.e("QuestionRepository", "Error fetching questions by part", e)
+                Result.Error("Network error: ${e.message}")
+            }
+        }
     }
 }

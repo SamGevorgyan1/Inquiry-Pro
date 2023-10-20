@@ -7,10 +7,10 @@ import retrofit2.http.Path
 
 interface PartApi {
 
-    @GET("/byCategory/{categoryId}")
+    @GET("/api/parts/byCategory/{categoryId}")
     fun getPartsByCategoryId(@Path("categoryId") categoryId: Int): Call<List<Part>>
 
-    @GET("/get-part{partId}")
+    @GET("/api/parts/get-part{partId}")
     fun getPartById(@Path("partId") partId:Int):Call<Part>
 
 }

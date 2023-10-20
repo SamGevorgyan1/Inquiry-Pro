@@ -1,51 +1,57 @@
 package com.inquirypro.ui.main.fragments
 
+import android.app.Dialog
+import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.View
+import android.view.Window
 import android.widget.TextView
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import com.inquirypro.R
 import com.inquirypro.databinding.FragmentQuestionBinding
-import com.inquirypro.model.Part
 import com.inquirypro.model.Question
 import com.inquirypro.ui.viewmodel.QuestionViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import android.view.animation.AnimationUtils
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.google.gson.Gson
+import com.inquirypro.base.BaseFragment
+import com.inquirypro.databinding.CustomDialogBinding
 import com.inquirypro.model.QuestionResult
-import com.inquirypro.model.Story
-import com.inquirypro.ui.auth.fragments.Us
-import com.inquirypro.ui.viewmodel.QuestionStoryViewModel
-import com.inquirypro.ui.viewmodel.StoryViewModel
+import com.inquirypro.model.login.LoginResponse
+import com.inquirypro.ui.main.callbacks.OpenQuestionFragmentListener
+import com.inquirypro.ui.viewmodel.QuestionResultViewModel
+import com.inquirypro.util.Constants.Companion.PART_ID
+import com.inquirypro.util.Constants.Companion.QUESTION_RESULT_ID
+import com.inquirypro.util.Constants.Companion.RESULT_CORRECT_INCORRECT_AMOUNT
 import kotlinx.coroutines.launch
-import okhttp3.MediaType
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.RequestBody
-import java.io.IOException
 
 
-class QuestionFragment : Fragment(R.layout.fragment_question) {
+class QuestionFragment : BaseFragment(R.layout.fragment_question) {
 
     private lateinit var binding: FragmentQuestionBinding
     private val viewModel by viewModel<QuestionViewModel>()
     private val questionList: MutableList<Question> = mutableListOf()
-    private val questionStoryViewModel by viewModel<StoryViewModel>()
-    private val questionStoryList2: ArrayList<Int> = arrayListOf()
-    private val questionSViewModel by viewModel<QuestionStoryViewModel>()
+    private val questionResultIdList: ArrayList<Int> = arrayListOf()
+    private val questionResultViewModel by viewModel<QuestionResultViewModel>()
+    private var openQuestionFragmentListener: OpenQuestionFragmentListener? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val part = arguments?.getParcelable<Part>("part")
+        openQuestionFragmentListener?.openQuestion()
 
-        part?.id?.let { viewModel.getQuestionByCategoryId(it) }
+        val partId = arguments?.getInt(PART_ID)
 
+        partId?.let {
+            viewModel.getQuestionsBySubsectionId(it)
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -53,16 +59,28 @@ class QuestionFragment : Fragment(R.layout.fragment_question) {
         binding = FragmentQuestionBinding.bind(view)
 
 
-        viewModel.questionLiveData.observe(viewLifecycleOwner) {
-            it?.let { questionList.addAll(it) }
-            Log.i("Questions", it.toString())
-            updateUIWithData()
+        viewModel.partQuestionLiveData.observe(viewLifecycleOwner) {
+            if (it != null) {
+                it.let { questionList.addAll(it) }
+                Log.i("Questions", it.toString())
+                updateUIWithData()
+            }
+        }
+
+        binding.btnClose.setOnClickListener {
+            showDialog()
         }
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is OpenQuestionFragmentListener) {
+            openQuestionFragmentListener = context
+        }
+    }
 
     private fun updateUIWithData() {
-        val questionResultList = ArrayList<QuestionResult>()
+
         var correctResult = 0
         var incorrectResult = 0
 
@@ -96,55 +114,53 @@ class QuestionFragment : Fragment(R.layout.fragment_question) {
             if (currentQuestionIndex < questionList.size) {
 
                 updateUIWithQuestion(currentQuestionIndex)
-
             } else {
+
                 val resultList = arrayListOf(incorrectResult, correctResult)
                 val args = Bundle().apply {
-                    putIntegerArrayList("result", resultList)
-                    putIntegerArrayList("resultQuestion", questionStoryList2)
+                    putIntegerArrayList(RESULT_CORRECT_INCORRECT_AMOUNT, resultList)
+                    putIntegerArrayList(QUESTION_RESULT_ID, questionResultIdList)
                 }
-                val story = Story(user = Us.user, questionStories = questionResultList)
-                Log.i("story list q",story.questionStories.toString())
+                Log.i("questionResult", questionResultIdList.toString())
 
-                lifecycleScope.launch {
-                    questionStoryViewModel.createQuestionStory(story)
-                    Log.i("questionResult", questionResultList.toString())
+                Handler(Looper.getMainLooper()).postDelayed({
+                    openQuestionFragmentListener?.closeQuestion()
                     findNavController().navigate(
                         R.id.action_questionFragment_to_questionResultFragment,
                         args
                     )
-                }
+                }, 150)
             }
         }
 
 
         for ((index, option) in options.withIndex()) {
+
             option.text = questionList[currentQuestionIndex].options?.get(index).toString()
             binding.tvQuestionText.text = questionList[currentQuestionIndex].questionText
             option.setOnClickListener {
-
-                val questionResult = QuestionResult(
-                    question = questionList[currentQuestionIndex],
-                    incorrectResult = options.indexOf(option),
-                    user = Us.user
-                )
-
-                questionResultList.add(questionResult)
-
                 lifecycleScope.launch {
-                    val createQuestionStory = questionSViewModel.createQuestionStory(questionResult)
-                    createQuestionStory?.id?.let { questionStoryList2.add(it) }
+                    val user = LoginResponse.retrieverUser()
+
+                    val questionResult = QuestionResult(
+                        question = questionList[currentQuestionIndex],
+                        incorrectResult = options.indexOf(option),
+                        user = user,
+                        subsection = questionList[currentQuestionIndex].subsection
+                    )
+                    val createQuestionResult = questionResultViewModel.createQuestionResult(questionResult)
+
+                    createQuestionResult?.id?.let { id -> questionResultIdList.add(id) }
+
+
+                    Log.i("question in f", questionResult.toString())
                 }
 
-                Log.i("questionList in qf", questionStoryList2.toString())
-
                 updateUIAndCheckAnswer(index)
-
             }
             binding.tvQuestionText.text = questionList[currentQuestionIndex].questionText
         }
     }
-
 
     private fun updateUIWithQuestion(questionIndex: Int) {
 
@@ -171,37 +187,32 @@ class QuestionFragment : Fragment(R.layout.fragment_question) {
         binding.tvQuestionText.startAnimation(slideInAnimation)
     }
 
+    private fun showDialog() {
+        val dialogBinding = CustomDialogBinding.inflate(layoutInflater)
+        val dialog = Dialog(requireContext())
 
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(false)
+        dialog.setContentView(dialogBinding.root)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-    fun addQuestionResultToStory(story: Story) {
-        val client = OkHttpClient()
+        dialogBinding.btnYes.setOnClickListener {
+            findNavController().popBackStack()
+            dialog.dismiss()
+            openQuestionFragmentListener?.closeQuestion()
+        }
 
-        // Convert the Story object to JSON format
-        val json = Gson().toJson(story)
-        val requestBody = RequestBody.create(MediaType.parse("application/json"), json)
+        dialogBinding.btnNo.setOnClickListener {
+            dialog.dismiss()
 
-        val request = Request.Builder()
-            .url("http://192.168.1.10:9000/add-question-result")
-            .post(requestBody)
-            .build()
+        }
+        dialog.show()
+    }
 
-        client.newCall(request).enqueue(object : okhttp3.Callback {
-            override fun onResponse(call: okhttp3.Call, response: okhttp3.Response) {
-                if (response.isSuccessful) {
-                    // Handle successful response here
-                    val responseBody = response.body()?.string()
-                    // Parse the response if needed
-                } else {
-                    // Handle error response here
-                    val errorMessage = response.body()?.string()
-                    // Display or log the error message
-                }
-            }
+    override fun handleOnBackPressed() {
+        super.handleOnBackPressed()
+        showDialog()
+        openQuestionFragmentListener?.closeQuestion()
 
-            override fun onFailure(call: okhttp3.Call, e: IOException) {
-                // Handle network failure here
-                e.printStackTrace()
-            }
-        })
     }
 }

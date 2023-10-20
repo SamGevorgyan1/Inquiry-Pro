@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".ui.main.MainActivity">
 
 
@@ -11,13 +12,18 @@
         android:id="@+id/bottomNavMenu"
         android:layout_width="@dimen/_0dp"
         android:layout_height="@dimen/_60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/_15dp"
+        android:background="@drawable/bottom_menu_shape"
+        app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_menu" />
 
+
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView"
+        android:id="@+id/fragmentContainer"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"

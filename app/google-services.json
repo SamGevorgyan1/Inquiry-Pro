@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "490651420123",
+    "project_id": "inquiry-pro",
+    "storage_bucket": "inquiry-pro.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:490651420123:android:a36cff7546714b487553fe",
+        "android_client_info": {
+          "package_name": "com.inquirypro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "490651420123-7r5u460fus3emcshr84jehjamui891gj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.inquirypro",
+            "certificate_hash": "505150627215235fa435158498069206bcdcc27c"
+          }
+        },
+        {
+          "client_id": "490651420123-c51a2r1a52cv8k1b29bot9l3a19kf2gd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCDcIkbkeqIjHUv32fFIgXkDlIvVuSZT8s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "490651420123-c51a2r1a52cv8k1b29bot9l3a19kf2gd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

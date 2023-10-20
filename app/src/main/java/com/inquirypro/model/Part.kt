@@ -3,19 +3,23 @@ package com.inquirypro.model
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
-import kotlinx.parcelize.RawValue
+
 
 @Parcelize
+data class Part(
 
-class Part(
     @SerializedName("category")
-    val category: Category?,
+    val category: Category? = null,
+
     @SerializedName("id")
-    val id: Int?,
+    val id: Int? = 0,
+
     @SerializedName("name")
-    val name: String?,
+    val name: String? = "Part name",
 
-    @SerializedName("questions")
-    val questions: @RawValue List<Question>
+    @SerializedName("subsections")
+    val subsections: List<Subsection>? = null,
 
+
+    var isExpandable: Boolean = false
 ) : Parcelable

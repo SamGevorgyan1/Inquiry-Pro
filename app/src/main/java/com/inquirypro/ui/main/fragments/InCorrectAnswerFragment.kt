@@ -5,34 +5,37 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import com.inquirypro.R
 import com.inquirypro.databinding.FragmentIncorrectAnswerBinding
-import com.inquirypro.ui.auth.fragments.Us
-import com.inquirypro.ui.main.adapters.UserCorrectAnswersAdapter
-import com.inquirypro.ui.viewmodel.QuestionStoryViewModel
+import com.inquirypro.model.login.LoginResponse
+
+import com.inquirypro.ui.main.adapters.AnswerAdapter
+import com.inquirypro.ui.viewmodel.QuestionResultViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class InCorrectAnswerFragment : Fragment(R.layout.fragment_incorrect_answer) {
 
     private lateinit var binding: FragmentIncorrectAnswerBinding
-    private val questionStoryViewModel by viewModel<QuestionStoryViewModel>()
-    private val userCorrectAnswersAdapter = UserCorrectAnswersAdapter(false)
+    private val questionResultViewModel by viewModel<QuestionResultViewModel>()
+    private val answerAdapter = AnswerAdapter(false)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Us.user.id?.let { questionStoryViewModel.getUserIncorrectAnswers(it) }
-    }
 
+        val user = LoginResponse.retrieverUser()
+
+        user?.id?.let { questionResultViewModel.getUserIncorrectAnswers(it) }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentIncorrectAnswerBinding.bind(view)
 
-        questionStoryViewModel.userIncorrectAnswers.observe(viewLifecycleOwner) {
-            it?.let { userCorrectAnswersAdapter.updateData(it) }
+        questionResultViewModel.userIncorrectAnswers.observe(viewLifecycleOwner) {
+            it?.let { answerAdapter.updateData(it) }
             setupView()
         }
     }
 
     private fun setupView() {
-        binding.rvIncorrectAnswer.adapter = userCorrectAnswersAdapter
+        binding.rvIncorrectAnswer.adapter = answerAdapter
     }
 }

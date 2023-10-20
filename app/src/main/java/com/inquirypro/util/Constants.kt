@@ -1,8 +1,21 @@
 package com.inquirypro.util
 
 class Constants {
-    companion object{
-        const val BASE_URL="http://192.168.1.10:9000"
-        const val API_KEY="086680c6-53f9-4216-a0b3-0097d1dc2376"
+    companion object {
+        const val BASE_URL = "http://192.168.1.2:9000"
+
+        const val CATEGORY_ID = " "
+
+        const val PART_ID = " "
+        const val QUESTION_RESULT_ID = " "
+        const val ARTICLE_ID = " "
+        const val SUBSECTION_ID = " "
+
+        const val EMAIL = " "
+        const val TOKEN = " "
+        const val PASSWORD = ""
+
+        const val RESULT_CORRECT_INCORRECT_AMOUNT = ""
+
     }
 }

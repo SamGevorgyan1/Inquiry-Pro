@@ -19,17 +19,27 @@
         app:layout_constraintGuide_end="@dimen/_16dp" />
 
 
+    <ImageButton
+        android:id="@+id/btnClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20dp"
+        android:background="@drawable/ic_close"
+        app:layout_constraintStart_toStartOf="@id/contentStart"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
     <TextView
         android:id="@+id/tvQuestionText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_50dp"
-        android:textColor="@color/color_light_purple"
+        android:layout_marginTop="@dimen/_30dp"
+        android:textColor="@color/purple"
         android:textSize="@dimen/_20sp"
         app:layout_constraintEnd_toEndOf="@id/contentEnd"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="@id/contentStart"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/btnClose" />
 
     <TextView
         android:id="@+id/tvOption1"
@@ -37,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_100dp"
         android:layout_marginBottom="30dp"
-        android:background="@drawable/shape_stroke_rounded_light_purple_back_white"
+        android:background="@drawable/shape_stroke_rounded_purple_back_white"
         android:padding="@dimen/_10dp"
         android:textSize="@dimen/_18sp"
         app:layout_constraintEnd_toEndOf="@id/contentEnd"
@@ -51,7 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_30dp"
         android:layout_marginBottom="30dp"
-        android:background="@drawable/shape_stroke_rounded_light_purple_back_white"
+        android:background="@drawable/shape_stroke_rounded_purple_back_white"
         android:padding="@dimen/_10dp"
         android:textSize="@dimen/_18sp"
         app:layout_constraintEnd_toEndOf="@id/contentEnd"
@@ -65,7 +75,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_30dp"
         android:layout_marginBottom="30dp"
-        android:background="@drawable/shape_stroke_rounded_light_purple_back_white"
+        android:background="@drawable/shape_stroke_rounded_purple_back_white"
         android:padding="@dimen/_10dp"
         android:textSize="@dimen/_18sp"
         app:layout_constraintEnd_toEndOf="@id/contentEnd"
@@ -79,7 +89,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_30dp"
         android:layout_marginBottom="30dp"
-        android:background="@drawable/shape_stroke_rounded_light_purple_back_white"
+        android:background="@drawable/shape_stroke_rounded_purple_back_white"
         android:padding="@dimen/_10dp"
         android:textSize="@dimen/_18sp"
         app:layout_constraintEnd_toEndOf="@id/contentEnd"

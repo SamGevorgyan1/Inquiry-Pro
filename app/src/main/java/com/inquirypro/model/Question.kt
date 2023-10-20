@@ -6,7 +6,8 @@ import kotlinx.parcelize.Parcelize
 
 
 @Parcelize
-class Question(
+data class Question(
+
     @SerializedName("id")
     val id: Int,
 
@@ -19,6 +20,10 @@ class Question(
     @SerializedName("correctOptionIndex")
     val correctOptionIndex: Int,
 
-    @SerializedName("part")
-    val part:Part
-): Parcelable
+    @SerializedName("subsection")
+    val subsection: Subsection,
+
+    @SerializedName("explanation")
+    val explanation: String
+
+) : Parcelable

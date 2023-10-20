@@ -46,12 +46,12 @@
         android:drawableStart="@drawable/ic_user"
         android:drawablePadding="@dimen/_8dp"
         android:text="Your Email/UserName"
-        app:layout_constraintBottom_toTopOf="@id/etEmailOrUserName"
-        app:layout_constraintStart_toStartOf="@id/etEmailOrUserName" />
+        app:layout_constraintBottom_toTopOf="@id/etEmail"
+        app:layout_constraintStart_toStartOf="@id/etEmail" />
 
 
     <EditText
-        android:id="@+id/etEmailOrUserName"
+        android:id="@+id/etEmail"
         style="@style/EditTextEmailAddress"
         android:layout_width="0dp"
 
@@ -89,7 +89,7 @@
         android:layout_marginBottom="@dimen/_32dp"
         android:gravity="center"
         android:text="Forgot Password?"
-        android:textColor="@color/color_light_purple"
+        android:textColor="@color/purple"
         app:layout_constraintBottom_toTopOf="@id/btnSignIn"
         app:layout_constraintEnd_toEndOf="@id/contentEnd"
         app:layout_constraintStart_toStartOf="@id/contentStart" />
@@ -99,7 +99,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="@dimen/_32dp"
-        android:background="@drawable/shape_rounded_light_purple"
+        android:background="@drawable/shape_rounded_purple"
         android:text="Sign In"
         android:textAllCaps="false"
         android:textColor="@color/white"

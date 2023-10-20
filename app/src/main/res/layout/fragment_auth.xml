@@ -8,75 +8,54 @@
     tools:context=".ui.auth.fragments.AuthFragment">
 
 
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/contentStart"
         android:layout_width="@dimen/_0dp"
         android:layout_height="@dimen/_0dp"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="@dimen/_24dp" />
+        app:layout_constraintGuide_begin="@dimen/_32dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/contentEnd"
         android:layout_width="@dimen/_0dp"
         android:layout_height="@dimen/_0dp"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="@dimen/_24dp" />
+        app:layout_constraintGuide_end="@dimen/_32dp" />
 
 
     <ImageView
-        android:id="@+id/image"
-        android:layout_width="@dimen/_0dp"
-        android:layout_height="@dimen/_0dp"
-        android:layout_marginTop="@dimen/_64dp"
-        android:layout_marginBottom="@dimen/_64dp"
-        android:src="@drawable/ic_launcher_foreground"
-        app:layout_constraintEnd_toEndOf="@id/contentEnd"
+        android:id="@+id/ic_inquiry_pro"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/_10dp"
+        android:minWidth="@dimen/_200dp"
+        android:minHeight="@dimen/_200dp"
         app:layout_constraintHeight_percent="0.3"
+        app:layout_constraintVertical_bias="0.3"
+        android:src="@drawable/ic_inquiry_with_title"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/contentEnd"
         app:layout_constraintStart_toStartOf="@id/contentStart"
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <ImageView
-        android:id="@+id/ivIcon"
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/tvWelcomeDescription"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:minWidth="@dimen/_64dp"
-        android:src="@drawable/ic_item"
+        android:layout_marginBottom="@dimen/_10dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:gravity="center_horizontal"
+        android:maxLines="3"
+        android:minLines="3"
+        app:layout_constraintHorizontal_bias="1"
+        android:layout_marginTop="38dp"
+        android:text="@string/welcome_description"
+        android:textColor="#5c6c7b"
+        android:textSize="@dimen/_16sp"
         app:layout_constraintEnd_toEndOf="@id/contentEnd"
         app:layout_constraintStart_toStartOf="@id/contentStart"
-        app:layout_constraintTop_toBottomOf="@+id/image" />
-
-
-    <TextView
-        android:id="@+id/tvWelcomeTo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:lineHeight="@dimen/_1dp"
-        android:text="Welcome to Inquiry Pro"
-        android:textColor="@color/textColor"
-        android:textSize="@dimen/_24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/contentEnd"
-        app:layout_constraintStart_toStartOf="@id/contentStart"
-        app:layout_constraintTop_toBottomOf="@id/ivIcon" />
-
-
-
-
-    <TextView
-        android:id="@+id/tvText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="asjdahsdhkjasdhjkhjadshjkadshkjadshjkhkjadshjkads
-jadshjasdhjhkjasdkjhaskjdhkjhdasjhk"
-        app:layout_constraintBottom_toTopOf="@id/btnSignIn"
-        app:layout_constraintEnd_toEndOf="@id/contentEnd"
-        app:layout_constraintStart_toStartOf="@id/contentStart"
-        app:layout_constraintTop_toBottomOf="@id/tvWelcomeTo"
-        app:layout_constraintVertical_bias="0.2" />
+        app:layout_constraintTop_toBottomOf="@+id/ic_inquiry_pro" />
 
 
     <androidx.appcompat.widget.AppCompatButton
@@ -84,11 +63,10 @@ jadshjasdhjhkjasdkjhaskjdhkjhdasjhk"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="@dimen/_16dp"
-        android:background="@drawable/shape_rounded_light_purple"
-        android:text="Sign In"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_16sp"
+        android:background="@drawable/shape_stroke_rounded_purple_back_white"
+        style="@style/ButtonStyle"
+        android:text="@string/login"
+        android:textColor="#7b27db"
         app:layout_constraintBottom_toTopOf="@+id/btnSignUp"
         app:layout_constraintEnd_toEndOf="@id/contentEnd"
         app:layout_constraintHeight_percent="0.1"
@@ -99,13 +77,11 @@ jadshjasdhjhkjasdkjhaskjdhkjhdasjhk"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="@dimen/_32dp"
-        android:background="@drawable/shape_stroke_rounded_light_purple_back_white"
-
-        android:text="Sign Up"
-        android:textAllCaps="false"
-        android:textColor="@color/color_light_purple"
+        android:background="@drawable/shape_rounded_purple"
+        style="@style/ButtonStyle"
+        android:text="@string/register"
+        android:textColor="#ffffff"
         android:textSize="@dimen/_16sp"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/contentEnd"
         app:layout_constraintHeight_percent="0.1"

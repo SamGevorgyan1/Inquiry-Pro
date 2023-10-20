@@ -6,28 +6,37 @@
         android:id="@+id/menuHome"
         android:checkable="true"
         android:icon="@drawable/ic_home_selector"
-        android:title=""
+        android:title="Home"
         app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/menuCategory"
         android:checkable="true"
-        android:icon="@color/color_light_purple"
-        android:title=""
+        android:icon="@drawable/ic_category_selector"
+        android:title="Categories"
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/menuStory"
+        android:id="@+id/menuArticle"
         android:checkable="true"
-        android:icon="@color/color_light_purple"
-        android:title=""
+        android:icon="@drawable/ic_article_selector"
+        android:title="Articles"
+        app:showAsAction="ifRoom" />
+
+
+
+    <item
+        android:id="@+id/menuHistory"
+        android:checkable="true"
+        android:icon="@drawable/ic_history_selector"
+        android:title="History"
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/menuUser"
+        android:id="@+id/menuProfile"
         android:checkable="true"
-        android:icon="@drawable/ic_user_selector"
-        android:title=""
+        android:icon="@drawable/ic_profile_selector"
+        android:title="Profile"
         app:showAsAction="ifRoom" />
 
 </menu>

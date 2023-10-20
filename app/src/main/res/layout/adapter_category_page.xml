@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/categoryItemLayout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/_20dp"
+    app:cardCornerRadius="@dimen/_20dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/purple_light"
+        android:minWidth="140dp"
+        android:minHeight="@dimen/_150dp">
+
+
+        <ImageView
+            android:id="@+id/ivIconCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:minWidth="@dimen/_60dp"
+            android:minHeight="@dimen/_60dp"
+            android:background="@drawable/shape_rounded_dark_grey"
+            android:layout_marginStart="@dimen/_40dp"
+            android:layout_marginTop="@dimen/_20dp"
+            android:layout_marginEnd="@dimen/_40dp"/>
+        
+        <TextView
+            android:id="@+id/tvTitleCategoryName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Java Core"
+            app:layout_constraintTop_toBottomOf="@id/ivIconCategory"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="@dimen/_16sp"
+            android:layout_marginTop="@dimen/_20dp"
+            android:fontFamily="@font/montserrat_semibold"
+            android:textColor="@color/grey_dark"/>
+
+        <TextView
+            android:id="@+id/tvCountParts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12parts"
+            android:textColor="@color/grey_dark"
+            android:textSize="@dimen/_12sp"
+            android:layout_marginTop="@dimen/_2dp"
+            android:fontFamily="@font/montserrat_medium"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="@dimen/_16dp"
+            app:layout_constraintStart_toStartOf="@id/tvTitleCategoryName"
+            app:layout_constraintEnd_toEndOf="@id/tvTitleCategoryName"
+            app:layout_constraintTop_toBottomOf="@id/tvTitleCategoryName"/>
+
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.cardview.widget.CardView>

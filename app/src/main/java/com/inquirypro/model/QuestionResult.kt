@@ -6,20 +6,29 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class QuestionResult(
-    @SerializedName("id")
-    val id: Int?=null,
 
-    val user:User?=null,
+    @SerializedName("id")
+    val id: Int? = null,
+
+    @SerializedName("user")
+    val user: User? = null,
+
+    @SerializedName("partv")
+    val part: Part? = null,
+
+    @SerializedName("subsection")
+    val subsection: Subsection? = null,
 
     @SerializedName("question")
-    val question: Question?=null,
+    val question: Question? = null,
 
     @SerializedName("correctResult")
-    val correctResult: Int?=null,
+    val correctResult: Int? = null,
 
     @SerializedName("incorrectResult")
     val incorrectResult: Int,
 
     @SerializedName("createdAt")
-    val createdAt: String?=null
-): Parcelable
+    val createdAt: String? = null
+
+) : Parcelable

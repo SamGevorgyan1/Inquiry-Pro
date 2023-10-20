@@ -3,58 +3,91 @@ package com.inquirypro.ui.main.fragments
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.inquirypro.R
+import com.inquirypro.base.BaseFragment
 import com.inquirypro.databinding.FragmentQuestionResultBinding
 import com.inquirypro.model.QuestionResult
-import com.inquirypro.ui.auth.fragments.Us
 import com.inquirypro.ui.main.adapters.QuestionResultAdapter
-import com.inquirypro.ui.viewmodel.QuestionStoryViewModel
+import com.inquirypro.ui.viewmodel.CategoryViewModel
+import com.inquirypro.ui.viewmodel.QuestionResultViewModel
+import com.inquirypro.util.Constants.Companion.CATEGORY_ID
+import com.inquirypro.util.Constants.Companion.QUESTION_RESULT_ID
+import com.inquirypro.util.Constants.Companion.RESULT_CORRECT_INCORRECT_AMOUNT
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-
-class QuestionResultFragment : Fragment(R.layout.fragment_question_result) {
+class QuestionResultFragment : BaseFragment(R.layout.fragment_question_result) {
 
     private lateinit var binding: FragmentQuestionResultBinding
     private val questionResultAdapter = QuestionResultAdapter()
-    private val questionStoryViewModel by viewModel<QuestionStoryViewModel>()
+    private val questionResultViewModel by viewModel<QuestionResultViewModel>()
+    private val categoryViewModel by viewModel<CategoryViewModel>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        Us.user.id?.let { questionStoryViewModel.getQuestionStoryByUserId(it) }
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentQuestionResultBinding.bind(view)
 
-        binding.tvInCorrectResult.text = arguments?.getIntegerArrayList("result")?.get(0).toString()
-        binding.tvCorrectResult.text = arguments?.getIntegerArrayList("result")?.get(1).toString()
+
+        val incorrectResult =
+            arguments?.getIntegerArrayList(RESULT_CORRECT_INCORRECT_AMOUNT)?.get(0).toString()
+        val correctResult =
+            arguments?.getIntegerArrayList(RESULT_CORRECT_INCORRECT_AMOUNT)?.get(1).toString()
 
 
-        lifecycleScope.launch {
-            val questionResult = arguments?.getIntegerArrayList("resultQuestion")
+        binding.tvInCorrectResult.text = incorrectResult
+        binding.tvCorrectResult.text = correctResult
 
-            val newQuestionStories =
-                mutableListOf<QuestionResult>()
 
-            questionResult?.forEach { questionId ->
-                val questionStoryById = questionStoryViewModel.getQuestionStoryById(questionId)
+        val questionResultIds = arguments?.getIntegerArrayList(QUESTION_RESULT_ID)
 
-                if (questionStoryById != null) {
-                    newQuestionStories.add(questionStoryById)
+        Log.i("question in ques ", questionResultIds.toString())
+
+        val questionResults = mutableListOf<QuestionResult>()
+
+        questionResultIds?.forEach { questionId ->
+            lifecycleScope.launch {
+                val questionResult = fetchQuestionResult(questionId)
+                Log.i("question result in qf ", questionResult.toString())
+                if (questionResult != null) {
+                    questionResults.add(questionResult)
+                    questionResultAdapter.updateData(questionResults)
+                    binding.tvTittleSectionName.text = questionResult.subsection?.name
+
                 } else {
-                    Log.e("questionId", "QuestionResult is null for id: $questionId")
+                    Log.e("QuestionResultFragment", "QuestionResult is null for ID: $questionId")
                 }
             }
-            questionResultAdapter.updateData(newQuestionStories)
         }
+        categoryViewModel.categoryId.observe(viewLifecycleOwner){
+            Log.i("category viewmodel", it.toString())
+        }
+
+        setupListener()
         setupView()
     }
 
     private fun setupView() {
         binding.rvQuestionResult.adapter = questionResultAdapter
+    }
+
+    private suspend fun fetchQuestionResult(questionId: Int): QuestionResult? {
+        return withContext(Dispatchers.IO) {
+            questionResultViewModel.getQuestionResultById(questionId)
+        }
+    }
+
+    override fun handleOnBackPressed() {
+
+        findNavController().navigate(R.id.action_questionResultFragment_to_partFragment)
+    }
+
+    private fun setupListener() {
+
+
     }
 }

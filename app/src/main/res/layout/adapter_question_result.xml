@@ -63,7 +63,33 @@
             app:layout_constraintTop_toBottomOf="@id/tvOption3" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tvTextExplanation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10dp"
+            android:layout_marginEnd="@dimen/_10dp"
+            android:layout_marginStart="@dimen/_10dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="String is a class in Java used to represent text or a sequence of characters.
+When you declare a variable with the String data type, you can store and manipulate text data.
+For example, you can create a String variable like this: String myString;"
+            android:textSize="@dimen/_12sp"
+            app:layout_constraintEnd_toStartOf="@+id/btnShowExplanation"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvOption4" />
 
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btnShowExplanation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_arrow_down"
+            android:layout_marginEnd="@dimen/_10dp"
+           app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvTextExplanation" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

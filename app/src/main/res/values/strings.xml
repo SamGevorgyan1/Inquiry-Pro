@@ -1,7 +1,15 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
+
     <string name="app_name" translatable="false">Inquiry Pro</string>
 
-    <string name="welcome_to_colored_text" translatable="false">
-    <span android:textColor="#FFFFFF">Welcome to Inquiry Pro </span>
-</string>
+    <string name="welcome_to_colored_text" translatable="false"><span android:textColor="#FFFFFF">Welcome to Inquiry Pro </span></string>
+
+
+                        <!--  Fragment Auth   -->
+    <string name="welcome_description">Get ready to grow and challenge \nyour knowledge! Welcome to <b><font color="#7b27db">\nInquiry Pro.</font></b></string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="it_s_time_to_increase_your_skills_and_learn">It’s time to increase your\nskills and learn!</string>
+
+
 </resources>

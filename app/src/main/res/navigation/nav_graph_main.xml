@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph_main"
-    app:startDestination="@id/categoryFragment">
+    app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/categoryFragment"
@@ -23,7 +23,8 @@
         tools:layout="@layout/fragment_part">
         <action
             android:id="@+id/action_partFragment_to_questionFragment"
-            app:destination="@id/questionFragment" />
+            app:destination="@id/questionFragment"
+           />
     </fragment>
     <fragment
         android:id="@+id/questionFragment"
@@ -38,26 +39,35 @@
         android:id="@+id/questionResultFragment"
         android:name="com.inquirypro.ui.main.fragments.QuestionResultFragment"
         android:label="QuestionResultFragment"
-        tools:layout="@layout/fragment_question_result"/>
+        tools:layout="@layout/fragment_question_result">
+
+        <action
+            android:id="@+id/action_questionResultFragment_to_partFragment"
+            app:destination="@id/partFragment" />
+    </fragment>
     <fragment
         android:id="@+id/userFragment"
         android:name="com.inquirypro.ui.main.fragments.UserFragment"
         android:label="UserFragment"
-        tools:layout="@layout/fragment_user"/>
-    <fragment
-        android:id="@+id/questionStoriesFragment"
-        android:name="com.inquirypro.ui.main.fragments.QuestionStoriesFragment"
-        android:label="FragmentQuestionStory"
-        tools:layout="@layout/fragment_question_stories">
+        tools:layout="@layout/fragment_user">
         <action
-            android:id="@+id/action_questionStoriesFragment_to_questionStoryFragment"
-            app:destination="@id/questionStoryFragment" />
+            android:id="@+id/action_userFragment_to_inCorrectAnswerFragment"
+            app:destination="@id/inCorrectAnswerFragment" />
+        <action
+            android:id="@+id/action_userFragment_to_correctAnswerFragment"
+            app:destination="@id/correctAnswerFragment" />
     </fragment>
+
     <fragment
-        android:id="@+id/questionStoryFragment"
-        android:name="com.inquirypro.ui.main.fragments.QuestionStoryFragment"
-        android:label="QuestionStoryFragment"
-        tools:layout="@layout/fragment_question_story"/>
+        android:id="@+id/historyFragment"
+        android:name="com.inquirypro.ui.main.fragments.history.HistoryFragment"
+        android:label="HistoryFragment"
+        tools:layout="@layout/fragment_history">
+
+        <action
+            android:id="@+id/action_partHistoryFragment_to_questionHistoryFragment"
+            app:destination="@id/questionHistoryFragment" />
+    </fragment>
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.inquirypro.ui.main.fragments.HomeFragment"
@@ -67,11 +77,9 @@
             android:id="@+id/action_homeFragment_to_partFragment"
             app:destination="@id/partFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_correctAnswerFragment"
-            app:destination="@id/correctAnswerFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_inCorrectAnswerFragment"
-            app:destination="@id/inCorrectAnswerFragment" />
+            android:id="@+id/action_homeFragment_to_readArticleFragment"
+            app:destination="@id/readArticleFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/inCorrectAnswerFragment"
@@ -83,4 +91,37 @@
         android:name="com.inquirypro.ui.main.fragments.CorrectAnswerFragment"
         android:label="CorrectAnswerFragment"
         tools:layout="@layout/fragment_correct_answer"/>
+    <fragment
+        android:id="@+id/questionHistoryFragment"
+        android:name="com.inquirypro.ui.main.fragments.history.QuestionHistoryFragment"
+        android:label="QuestionHistoryFragment"
+        tools:layout="@layout/fragment_question_history">
+
+    </fragment>
+    <fragment
+        android:id="@+id/articleFragment"
+        android:name="com.inquirypro.ui.main.fragments.article.ArticleFragment"
+        android:label="ArticleFragment"
+        tools:layout="@layout/fragment_article" >
+        <action
+            android:id="@+id/action_articleFragment_to_readArticleFragment"
+            app:destination="@id/readArticleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.inquirypro.ui.main.fragments.SearchFragment"
+        android:label="SearchFragment"
+        tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/action_searchFragment_to_categoryFragment"
+            app:destination="@id/categoryFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_partFragment"
+            app:destination="@id/partFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/readArticleFragment"
+        android:name="com.inquirypro.ui.main.fragments.article.ReadArticleFragment"
+        android:label="ReadArticleFragment"
+        tools:layout="@layout/fragment_read_article"/>
 </navigation>
